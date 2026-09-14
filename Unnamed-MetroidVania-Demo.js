@@ -5,7 +5,11 @@ int PY;
 int RMX;
 int RMY;
 
-void setup(){}
+void setup(){
+  PHP=10;
+  PMP=5;
+  
+}
 void draw(){}
 void keyPressed(){}
 void keyReleased(){}
