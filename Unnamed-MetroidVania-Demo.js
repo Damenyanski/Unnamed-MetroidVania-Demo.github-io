@@ -1,10 +1,10 @@
-int PHP;
-int PMP;
-int PX;
-int PY;
-int RMX;
-int RMY;
-int PXP;
+var PHP;
+var PMP;
+var PX;
+var PY;
+var RMX;
+var RMY;
+var PXP;
 
 
 
