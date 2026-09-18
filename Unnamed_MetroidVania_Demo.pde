@@ -7,12 +7,19 @@ int PY;
 int EX;
 int EY;
 
+boolean left;
+boolean right;
+
  void setup(){
  fullScreen();
  PHP = 10;
  PMP = 5;
- frameRate(60);}
+ frameRate(60);
+ right = true;
+ left = false;
+ }
  
+  String AssetFolder = "Dependancies";
   String ImagesFolder = "Visual";
   String ImageNameI = "Protagonist I";
   String ImageNameII = "Protagonist II";
@@ -24,15 +31,34 @@ int EY;
   String fileExtentionImage = ".png";
   String open = "/";
   //
-  String ImageDirectory = ImagesFolder + open;
+  String ImageDirectory = AssetFolder + open + ImagesFolder + open;
   String IpathwayI = ImageDirectory + ImageNameI + fileExtentionImage;
   String IpathwayII = ImageDirectory + ImageNameII + fileExtentionImage;
   String IpathwayIII = ImageDirectory + ImageNameIII + fileExtentionImage;
   String IpathwayIV = ImageDirectory + ImageNameIV + fileExtentionImage;
   String IpathwayV = ImageDirectory + ImageNameV + fileExtentionImage;
   
- void draw (){}
+ void draw (){
+ }
  
- void keyPressed(){}
- 
- void keyReleased(){}
+ void keyPressed(){
+   
+  if (key == 'w' || key == 'W') {
+    PY = PY-1;
+  }
+  if (key == 's' || key == 'S') {
+    PY = PY+1;
+  }
+  if (key == 'a' || key == 'A') {
+    PX = PX-1;
+    left = true;
+    right = false;
+  }
+  if (key == 'd' || key == 'D') {
+    PX = PX+1;
+    right = true;
+    left = false;
+ }
+ }
+ void keyReleased(){
+ }
