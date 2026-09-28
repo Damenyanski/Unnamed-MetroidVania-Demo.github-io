@@ -1,4 +1,4 @@
-int NumofDiv;
+/*int NumofDiv;
 int NumofPar;
 int RoomX;
 int RoomY;
@@ -19,4 +19,4 @@ divs[8] = 321;
 divs[9] = 800;
 divs[10] = 160;
 divs[11] = 80;
-}
+}*/

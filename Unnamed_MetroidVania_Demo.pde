@@ -14,25 +14,42 @@ int PHP;
 int PMP;
 int ED;
 int EHP;
-int PX;
-int PY;
+int CPX;
+int CPY;
+int CPW;
+int CPH;
+int NPX;
+int NPY;
+int NPW;
+int NPH;
 int PH;
 int PW;
 int EX;
 int EY;
 
+String RX;
+String RY;
+
+int Ground = 620;
+
 int step;
 
-PImage ImageI;
-PImage ImageII;
-PImage ImageIII;
-PImage ImageIV;
-PImage ImageV;
-PImage ImageVI;
-PImage ImageVII;
+PImage ImageRI;
+PImage ImageRII;
+PImage ImageRIII;
+PImage ImageRIV;
+PImage ImageRV;
+PImage ImageRVI;
+PImage ImageRVII;
+PImage ImageLI;
+PImage ImageLII;
+PImage ImageLIII;
+PImage ImageLIV;
+PImage ImageLV;
+PImage ImageLVI;
+PImage ImageLVII;
 PImage BgroundI;
 PImage BackgroundII;
-
 
 boolean left;
 boolean right;
@@ -40,31 +57,43 @@ boolean right;
 boolean Grav;
 boolean TouchGround;
 
- void setup(){
- fullScreen();
- println(displayWidth, displayHeight);
- //AppWidth=displayWidth;
- //AppHeight=displayHeight;
- 
- PHP = 10;
- PMP = 5;
- step = 10;
- frameRate(60);
- right = true;
- left = false;
- Grav = false;
- TouchGround = true;
+boolean NONMOVE;
+
+void setup() {
+  fullScreen();
+  println(NPX, NPY);
+  println(displayWidth, displayHeight);
+  AppWidth=displayWidth;
+  AppHeight=displayHeight;
+
+  PHP = 10;
+  PMP = 5;
+  step = 150;
+  NPX=5;
+  NPY=620;
+  right = true;
+  left = false;
+  Grav = false;
+  TouchGround = true;
 
   String AssetFolder = "Dependancies";
   String ImagesFolder = "Visual";
   String BackgroundFolder = "Back Ground";
-  String ImageNameI = "Protagonist 1 R";
-  String ImageNameII = "Protagonist 2 R";
-  String ImageNameIII = "Protagonist 3 R";
-  String ImageNameIV = "Protagonist 4 R";
-  String ImageNameV = "Protagonist 5 R";
-  String ImageNameVI = "Protagonist 6 R";
-  String ImageNameVII = "Protagonist 7 R";
+  String ImageNameRI = "Protagonist 1 R";
+  String ImageNameRII = "Protagonist 2 R";
+  String ImageNameRIII = "Protagonist 3 R";
+  String ImageNameRIV = "Protagonist 4 R";
+  String ImageNameRV = "Protagonist 5 R";
+  String ImageNameRVI = "Protagonist 6 R";
+  String ImageNameRVII = "Protagonist 7 R";
+  String ImageNameLI = "Protagonist 1 L";
+  String ImageNameLII = "Protagonist 2 L";
+  String ImageNameLIII = "Protagonist 3 L";
+  String ImageNameLIV = "Protagonist 4 L";
+  String ImageNameLV = "Protagonist 5 L";
+  String ImageNameLVI = "Protagonist 6 L";
+  String ImageNameLVII = "Protagonist 7 L";
+
   String BackgroundI = "Entrance 2";
   String BackgroundII = "Entrance 1";
   String fileExtentionImage = ".png";
@@ -72,84 +101,111 @@ boolean TouchGround;
   //
   String ImageDirectory = AssetFolder + open + ImagesFolder + open;
   String BackgroundDirectory = ImageDirectory + BackgroundFolder + open;
-  String IpathwayI = ImageDirectory + ImageNameI + fileExtentionImage;
-  String IpathwayII = ImageDirectory + ImageNameII + fileExtentionImage;
-  String IpathwayIII = ImageDirectory + ImageNameIII + fileExtentionImage;
-  String IpathwayIV = ImageDirectory + ImageNameIV + fileExtentionImage;
-  String IpathwayV = ImageDirectory + ImageNameV + fileExtentionImage;
-  String IpathwayVI = ImageDirectory + ImageNameVI + fileExtentionImage;
-  String IpathwayVII = ImageDirectory + ImageNameVII + fileExtentionImage;
+  String IpathwayRI = ImageDirectory + ImageNameRI + fileExtentionImage;
+  String IpathwayRII = ImageDirectory + ImageNameRII + fileExtentionImage;
+  String IpathwayRIII = ImageDirectory + ImageNameRIII + fileExtentionImage;
+  String IpathwayRIV = ImageDirectory + ImageNameRIV + fileExtentionImage;
+  String IpathwayRV = ImageDirectory + ImageNameRV + fileExtentionImage;
+  String IpathwayRVI = ImageDirectory + ImageNameRVI + fileExtentionImage;
+  String IpathwayRVII = ImageDirectory + ImageNameRVII + fileExtentionImage;
+  String IpathwayLI = ImageDirectory + ImageNameLI + fileExtentionImage;
+  String IpathwayLII = ImageDirectory + ImageNameLII + fileExtentionImage;
+  String IpathwayLIII = ImageDirectory + ImageNameLIII + fileExtentionImage;
+  String IpathwayLIV = ImageDirectory + ImageNameLIV + fileExtentionImage;
+  String IpathwayLV = ImageDirectory + ImageNameLV + fileExtentionImage;
+  String IpathwayLVI = ImageDirectory + ImageNameLVI + fileExtentionImage;
+  String IpathwayLVII = ImageDirectory + ImageNameLVII + fileExtentionImage;
 
   String BpathwayI = BackgroundDirectory + BackgroundI + fileExtentionImage;
-
-
-  ImageI = loadImage(IpathwayI);
-  ImageII = loadImage(IpathwayII);
-  ImageIII = loadImage(IpathwayIII);
-  ImageIV = loadImage(IpathwayIV);
-  ImageV = loadImage(IpathwayV);
-  ImageVI = loadImage(IpathwayVI);
-  ImageVII = loadImage(IpathwayVII);
+  ImageRI = loadImage(IpathwayRI);
+  ImageRII = loadImage(IpathwayRII);
+  ImageRIII = loadImage(IpathwayRIII);
+  ImageRIV = loadImage(IpathwayRIV);
+  ImageRV = loadImage(IpathwayRV);
+  ImageRVI = loadImage(IpathwayRVI);
+  ImageRVII = loadImage(IpathwayRVII);
+  ImageLI = loadImage(IpathwayLI);
+  ImageLII = loadImage(IpathwayLII);
+  ImageLIII = loadImage(IpathwayLIII);
+  ImageLIV = loadImage(IpathwayLIV);
+  ImageLV = loadImage(IpathwayLV);
+  ImageLVI = loadImage(IpathwayLVI);
+  ImageLVII = loadImage(IpathwayLVII);
   BgroundI = loadImage(BpathwayI);
 
-  
- //divs();
- } 
- void draw (){
-   background(BgroundI);
-    while(Grav = true) {
-    PY = PY-5;
-   }
-   while(TouchGround = true)
-   {
-     Grav = false;
-   }
-image(ImageI, PX,PY,PW,PH);
-println(PX,PY);
+
+  //divs();
 }
- 
- void keyPressed(){
-   
-   /*if (key==CODED) {
-    if (keyCode == RIGHT) {
-      left=true;
-      right=false;
-      PX=PX+step/6-3;
-      image(ImageI, PX, PY, step, step);
-      image(ImageII, PX, PY, step, step);
-      image(ImageIII, PX, PY, step, step);
-      image(ImageII, PX, PY, step, step);
-      image(ImageI, PX, PY, step, step);
-    }
-    right=true;
+void draw () {
+  background(BgroundI);
+  if (right==false&&left==true) {
+    image(ImageLI, NPX, NPY, step, step);
+    right=false;
+    left=true;
+  }
+  if (right==true&&left==false) {
+    image(ImageRI, NPX, NPY, step, step);
     left=false;
+    right = true;
+  }
+  println(NPX, NPY);
+  if (NPY<=Ground-3) {
+    NPY+=6;
+    if (NPY==Ground) {
+      NPY=620;
+    }
+  }
+}
+
+void keyPressed() {
+  if (key == 'x' || key == 'X') {
+    NPY-=240;
+    Grav=true;
+  }
+  if (key==CODED) {
+    if (keyCode == RIGHT) {
+      NONMOVE=false;
+      NPX = CPX+10;
+      image(ImageRI, NPX, NPY, step, step);
+      CPX = NPX;
+      right = true;
+      left = false;
+    }
   }
   if (key==CODED) {
     if (keyCode == LEFT) {
-      left=true;
-      right=false;
-      PX=PX-step/6+3;
-      image(ImageIV, PX, PY, step, step);
-      image(ImageV, PX, PY, step, step);
-      image(ImageVI, PX, PY, step, step);
+      NONMOVE=false;
+      NPX = CPX-10;
+      image(ImageLI, NPX, NPY, step, step);
+      CPX = NPX;
+      left = true;
+      right = false;
     }
-    left=true;
-    right=false;*/
-   
-  if (key == 'a' || key == 'A') {
-    PX = PX-10;
-    left = true;
-    right = false;
   }
-  if (key == 'd' || key == 'D') {
-    PX = PX+10;
-    right = true;
-    left = false;
- }
- }
- void keyReleased(){
-   if (key == 'x' || key == 'X') {
-    PY = PY + (step * 3);
-    Grav=true;
+  if (key==CODED) {
+    if (keyCode == DOWN) {
+      image(ImageRIV, NPX, NPY, step, step);
+      NPH = step/2;
+    }
   }
- }
+}
+void keyReleased() {
+  if (keyCode == DOWN) {
+    image(ImageRI, NPX, NPY, step, step);
+    NPH = step;
+  }
+  if (key==CODED) {
+    if (keyCode == RIGHT) {
+      NONMOVE=false;
+      right = true;
+      left = false;
+    }
+  }
+  if (key==CODED) {
+    if (keyCode == LEFT) {
+      NONMOVE=true;
+      left = true;
+      right = false;
+    }
+  }
+}
