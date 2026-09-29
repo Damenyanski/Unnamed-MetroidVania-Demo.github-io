@@ -10,10 +10,8 @@ Minim minim;
 int AppWidth;
 int AppHeight;
 
-int PHP;
-int PMP;
-int ED;
-int EHP;
+float PHP;
+float PMP;
 int CPX;
 int CPY;
 int CPW;
@@ -24,13 +22,24 @@ int NPW;
 int NPH;
 int PH;
 int PW;
-int EX;
-int EY;
 
-String RX;
-String RY;
+int EHP;
+int EMP;
+int CEX;
+int CEY;
+int CEW;
+int CEH;
+int NEX;
+int NEY;
+int NEW;
+int NEH;
+int EH;
+int EW;
 
-int Ground = 620;
+float RX;
+float RY;
+
+float Ground = 620;
 
 int step;
 
@@ -57,7 +66,7 @@ boolean right;
 boolean Grav;
 boolean TouchGround;
 
-boolean NONMOVE;
+boolean Crouch;
 
 void setup() {
   fullScreen();
@@ -138,15 +147,37 @@ void setup() {
 }
 void draw () {
   background(BgroundI);
-  if (right==false&&left==true) {
+  text("HP:" + str(PHP), 0, 0, step/2, step/2);
+  text("MP:" + str(PMP), 0, 10, step/2, step/2);
+  if (right==false&&left==true&&Crouch==false&&Grav==false) {
     image(ImageLI, NPX, NPY, step, step);
     right=false;
     left=true;
   }
-  if (right==true&&left==false) {
+  if (right==true&&left==false&&Crouch==false&&Grav==false) {
     image(ImageRI, NPX, NPY, step, step);
     left=false;
     right = true;
+  }
+  if (right==false&&left==true&&Crouch==true&&Grav==false) {
+    image(ImageLIV, NPX, NPY, step, step);
+    right=false;
+    left=true;
+  }
+  if (right==true&&left==false&&Crouch==true&&Grav==false) {
+    image(ImageRIV, NPX, NPY, step, step);
+    left=false;
+    right = true;
+  }
+  if (right==false&&left==true&&Crouch==false&&Grav==true) {
+    image(ImageLIV, NPX, NPY, step, step);
+    right=false;
+    left=true;
+  }
+  if (right==true&&left==false&&Crouch==false&&Grav==true) {
+    image(ImageRIV, NPX, NPY, step, step);
+    right=true;
+    left=false;
   }
   println(NPX, NPY);
   if (NPY<=Ground-3) {
@@ -155,16 +186,25 @@ void draw () {
       NPY=620;
     }
   }
+  if (NPY==620) {
+    Grav=false;
+  }
 }
 
 void keyPressed() {
-  if (key == 'x' || key == 'X') {
-    NPY-=240;
+  if (key == 'x' || key == 'X'&&left==true) {
+    NPY-=120;
+    image(ImageLIV, NPX, NPY, step, step);
+    Grav=true;
+  }
+  if (key == 'x' || key == 'X'&&right==true) {
+    NPY-=120;
+    image(ImageRIV, NPX, NPY, step, step);
     Grav=true;
   }
   if (key==CODED) {
     if (keyCode == RIGHT) {
-      NONMOVE=false;
+      Crouch=false;
       NPX = CPX+10;
       image(ImageRI, NPX, NPY, step, step);
       CPX = NPX;
@@ -173,18 +213,29 @@ void keyPressed() {
     }
   }
   if (key==CODED) {
-    if (keyCode == LEFT) {
-      NONMOVE=false;
-      NPX = CPX-10;
-      image(ImageLI, NPX, NPY, step, step);
-      CPX = NPX;
-      left = true;
-      right = false;
+    if (NPX<0-50) {
+    } else {
+      if (keyCode == LEFT) {
+        Crouch=false;
+        NPX = CPX-10;
+        image(ImageLI, NPX, NPY, step, step);
+        CPX = NPX;
+        left = true;
+        right = false;
+      }
     }
   }
   if (key==CODED) {
-    if (keyCode == DOWN) {
+    if (keyCode == DOWN&&left==true) {
+      image(ImageLIV, NPX, NPY, step, step);
+      Crouch=true;
+      NPH = step/2;
+    }
+  }
+  if (key==CODED) {
+    if (keyCode == DOWN&&right==true) {
       image(ImageRIV, NPX, NPY, step, step);
+      Crouch=true;
       NPH = step/2;
     }
   }
@@ -193,17 +244,18 @@ void keyReleased() {
   if (keyCode == DOWN) {
     image(ImageRI, NPX, NPY, step, step);
     NPH = step;
+    Crouch=false;
   }
   if (key==CODED) {
     if (keyCode == RIGHT) {
-      NONMOVE=false;
+      Crouch=false;
       right = true;
       left = false;
     }
   }
   if (key==CODED) {
-    if (keyCode == LEFT) {
-      NONMOVE=true;
+    if (keyCode == LEFT&&left==true) {
+      Crouch=false;
       left = true;
       right = false;
     }
