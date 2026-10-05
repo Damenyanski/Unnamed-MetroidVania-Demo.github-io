@@ -1,22 +1,33 @@
-/*int NumofDiv;
+int NumofDiv;
 int NumofPar;
-int RoomX;
-int RoomY;
+int Ref = 20;
 float [] divs = new float[NumofDiv*NumofPar];
 //
 void divs(){
-divs[0] = 1;
-divs[1] = 800;
-divs[2] = 160;
-divs[3] = 80;
+  
+divs[0] = 3*Ref;
+divs[1] = 3*Ref;
+divs[2] = 17*Ref;
+divs[3] = 18*Ref;
 
-divs[4] = 161;
-divs[5] = 800;
-divs[6] = 160;
-divs[7] = 80;
+divs[4] = 4*Ref;
+divs[5] = 4*Ref;
+divs[6] = 5*Ref;
+divs[7] = 6*Ref;
 
-divs[8] = 321;
-divs[9] = 800;
-divs[10] = 160;
-divs[11] = 80;
-}*/
+divs[8] = 4*Ref;
+divs[9] = 8*Ref;
+divs[10] = 5*Ref;
+divs[11] = 1*Ref;
+
+divs[12] = 4*Ref;
+divs[13] = 9*Ref;
+divs[14] = 5*Ref;
+divs[15] = 1*Ref;
+
+divs[16] = 4*Ref;
+divs[17] = 10*Ref;
+divs[18] = 5*Ref;
+divs[19] = 1*Ref;
+
+}

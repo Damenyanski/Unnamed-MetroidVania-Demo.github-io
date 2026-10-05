@@ -141,9 +141,6 @@ void setup() {
   ImageLVI = loadImage(IpathwayLVI);
   ImageLVII = loadImage(IpathwayLVII);
   BgroundI = loadImage(BpathwayI);
-
-
-  //divs();
 }
 void draw () {
   background(BgroundI);
@@ -258,6 +255,11 @@ void keyReleased() {
       Crouch=false;
       left = true;
       right = false;
+    }
+  }
+  if (key==CODED) {
+    if (keyCode == ENTER) {
+      divs();
     }
   }
 }
