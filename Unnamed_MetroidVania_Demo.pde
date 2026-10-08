@@ -63,6 +63,8 @@ PImage BackgroundII;
 boolean left;
 boolean right;
 
+boolean Pause;
+
 boolean Grav;
 boolean TouchGround;
 
@@ -74,6 +76,8 @@ void setup() {
   println(displayWidth, displayHeight);
   AppWidth=displayWidth;
   AppHeight=displayHeight;
+
+  Pause = false;
 
   PHP = 10;
   PMP = 5;
@@ -176,7 +180,6 @@ void draw () {
     right=true;
     left=false;
   }
-  println(NPX, NPY);
   if (NPY<=Ground-3) {
     NPY+=6;
     if (NPY==Ground) {
@@ -189,16 +192,7 @@ void draw () {
 }
 
 void keyPressed() {
-  if (key == 'x' || key == 'X'&&left==true) {
-    NPY-=120;
-    image(ImageLIV, NPX, NPY, step, step);
-    Grav=true;
-  }
-  if (key == 'x' || key == 'X'&&right==true) {
-    NPY-=120;
-    image(ImageRIV, NPX, NPY, step, step);
-    Grav=true;
-  }
+
   if (key==CODED) {
     if (keyCode == RIGHT) {
       Crouch=false;
@@ -243,6 +237,16 @@ void keyReleased() {
     NPH = step;
     Crouch=false;
   }
+  if (key == 'x' || key == 'X'&&left==true) {
+    NPY-=120;
+    image(ImageLIV, NPX, NPY, step, step);
+    Grav=true;
+  }
+  if (key == 'x' || key == 'X'&&right==true) {
+    NPY-=120;
+    image(ImageRIV, NPX, NPY, step, step);
+    Grav=true;
+  }
   if (key==CODED) {
     if (keyCode == RIGHT) {
       Crouch=false;
@@ -257,9 +261,21 @@ void keyReleased() {
       right = false;
     }
   }
-  if (key==CODED) {
-    if (keyCode == ENTER) {
+  if (key == 's' || key == 'S') {
+    Pause=true;
+    while (Pause==true) {
       divs();
+      println("Test");
+      if (Pause=false) {
+        ;
+      }
+    }
+
+    if (key == 's' || key == 'S' && Pause==true) {
+      Pause=false;
     }
   }
-}
+
+
+
+  // Images based off of and inspired by Konami's Castlevania series
