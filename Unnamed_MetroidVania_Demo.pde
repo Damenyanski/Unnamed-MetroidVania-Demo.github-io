@@ -262,20 +262,20 @@ void keyReleased() {
     }
   }
   if (key == 's' || key == 'S') {
-    Pause=true;
-    while (Pause==true) {
-      divs();
-      println("Test");
-      if (Pause=false) {
-        ;
+    if (Pause = false) {
+      Pause = true;
+    } else if (Pause = true) {
+      Pause = false;
+      while (Pause==true) {
+        divs();
+        println("Test");
+      }
+
+      if (key == 's' || key == 'S' && Pause==true) {
+        Pause=false;
       }
     }
 
-    if (key == 's' || key == 'S' && Pause==true) {
-      Pause=false;
-    }
-  }
 
 
-
-  // Images based off of and inspired by Konami's Castlevania series
+    // Images based off of and inspired by Konami's Castlevania series
