@@ -50,6 +50,7 @@ PImage ImageRIV;
 PImage ImageRV;
 PImage ImageRVI;
 PImage ImageRVII;
+PImage ImageRAI;
 PImage ImageLI;
 PImage ImageLII;
 PImage ImageLIII;
@@ -57,6 +58,7 @@ PImage ImageLIV;
 PImage ImageLV;
 PImage ImageLVI;
 PImage ImageLVII;
+PImage ImageLAI;
 PImage BgroundI;
 PImage BackgroundII;
 
@@ -99,6 +101,7 @@ void setup() {
   String ImageNameRV = "Protagonist 5 R";
   String ImageNameRVI = "Protagonist 6 R";
   String ImageNameRVII = "Protagonist 7 R";
+  String ImageNameRAI = "RapierR";
   String ImageNameLI = "Protagonist 1 L";
   String ImageNameLII = "Protagonist 2 L";
   String ImageNameLIII = "Protagonist 3 L";
@@ -106,6 +109,7 @@ void setup() {
   String ImageNameLV = "Protagonist 5 L";
   String ImageNameLVI = "Protagonist 6 L";
   String ImageNameLVII = "Protagonist 7 L";
+  String ImageNameLAI = "RapierL";
 
   String BackgroundI = "Entrance 2";
   String BackgroundII = "Entrance 1";
@@ -121,6 +125,7 @@ void setup() {
   String IpathwayRV = ImageDirectory + ImageNameRV + fileExtentionImage;
   String IpathwayRVI = ImageDirectory + ImageNameRVI + fileExtentionImage;
   String IpathwayRVII = ImageDirectory + ImageNameRVII + fileExtentionImage;
+  String IpathwayRAI = ImageDirectory + ImageNameRAI + fileExtentionImage;
   String IpathwayLI = ImageDirectory + ImageNameLI + fileExtentionImage;
   String IpathwayLII = ImageDirectory + ImageNameLII + fileExtentionImage;
   String IpathwayLIII = ImageDirectory + ImageNameLIII + fileExtentionImage;
@@ -128,6 +133,7 @@ void setup() {
   String IpathwayLV = ImageDirectory + ImageNameLV + fileExtentionImage;
   String IpathwayLVI = ImageDirectory + ImageNameLVI + fileExtentionImage;
   String IpathwayLVII = ImageDirectory + ImageNameLVII + fileExtentionImage;
+  String IpathwayLAI = ImageDirectory + ImageNameLAI + fileExtentionImage;
 
   String BpathwayI = BackgroundDirectory + BackgroundI + fileExtentionImage;
   ImageRI = loadImage(IpathwayRI);
@@ -137,6 +143,7 @@ void setup() {
   ImageRV = loadImage(IpathwayRV);
   ImageRVI = loadImage(IpathwayRVI);
   ImageRVII = loadImage(IpathwayRVII);
+  ImageRAI = loadImage(IpathwayRAI);
   ImageLI = loadImage(IpathwayLI);
   ImageLII = loadImage(IpathwayLII);
   ImageLIII = loadImage(IpathwayLIII);
@@ -232,21 +239,34 @@ void keyPressed() {
   }
 }
 void keyReleased() {
+
+  if (key == 'z' || key == 'Z'&&left==true) {
+
+    image(ImageLVII, NPX, NPY, step, step);
+  }
+  if (key == 'z' || key == 'Z'&&right==true) {
+
+    image(ImageRVII, NPX, NPY, step, step);
+  }
+
   if (keyCode == DOWN) {
     image(ImageRI, NPX, NPY, step, step);
     NPH = step;
     Crouch=false;
   }
+
   if (key == 'x' || key == 'X'&&left==true) {
     NPY-=120;
     image(ImageLIV, NPX, NPY, step, step);
     Grav=true;
   }
+
   if (key == 'x' || key == 'X'&&right==true) {
     NPY-=120;
     image(ImageRIV, NPX, NPY, step, step);
     Grav=true;
   }
+
   if (key==CODED) {
     if (keyCode == RIGHT) {
       Crouch=false;
@@ -254,6 +274,7 @@ void keyReleased() {
       left = false;
     }
   }
+
   if (key==CODED) {
     if (keyCode == LEFT&&left==true) {
       Crouch=false;
@@ -261,21 +282,9 @@ void keyReleased() {
       right = false;
     }
   }
-  if (key == 's' || key == 'S') {
-    if (Pause = false) {
-      Pause = true;
-    } else if (Pause = true) {
-      Pause = false;
-      while (Pause==true) {
-        divs();
-        println("Test");
-      }
-
-      if (key == 's' || key == 'S' && Pause==true) {
-        Pause=false;
-      }
-    }
-
-
-
-    // Images based off of and inspired by Konami's Castlevania series
+  if (key == 's' || key == 'S'&&Pause==false) {
+    draw();
+    divs();
+  }
+}
+// Images based off of and inspired by Konami's Castlevania series
