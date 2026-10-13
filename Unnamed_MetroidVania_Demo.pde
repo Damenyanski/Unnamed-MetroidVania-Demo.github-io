@@ -283,7 +283,6 @@ void keyReleased() {
     }
   }
   if (key == 's' || key == 'S'&&Pause==false) {
-    draw();
     divs();
   }
 }
