@@ -41,6 +41,9 @@ float RY;
 
 float Ground = 620;
 
+int StartFrame;
+int EndFrame;
+
 int step;
 
 PImage ImageRI;
@@ -71,6 +74,8 @@ boolean Grav;
 boolean TouchGround;
 
 boolean Crouch;
+
+boolean Menu = false;
 
 void setup() {
   fullScreen();
@@ -193,10 +198,15 @@ void draw () {
       NPY=620;
     }
   }
-  if (NPY==620) {
+  if (NPY<=620) {
     Grav=false;
   }
+
+  while (Menu == true) {
+    divs();
+  }
 }
+
 
 void keyPressed() {
 
@@ -227,6 +237,7 @@ void keyPressed() {
     if (keyCode == DOWN&&left==true) {
       image(ImageLIV, NPX, NPY, step, step);
       Crouch=true;
+      NPY=NPY+13;
       NPH = step/2;
     }
   }
@@ -234,18 +245,17 @@ void keyPressed() {
     if (keyCode == DOWN&&right==true) {
       image(ImageRIV, NPX, NPY, step, step);
       Crouch=true;
+      NPY=NPY+13;
       NPH = step/2;
     }
   }
 }
 void keyReleased() {
 
-  if (key == 'z' || key == 'Z'&&left==true) {
-
+  if (key == 'z' || key == 'Z'&&left==true&&right==false) {
     image(ImageLVII, NPX, NPY, step, step);
   }
-  if (key == 'z' || key == 'Z'&&right==true) {
-
+  if (key == 'z' || key == 'Z'&&right==true&&left==false) {
     image(ImageRVII, NPX, NPY, step, step);
   }
 
@@ -282,8 +292,26 @@ void keyReleased() {
       right = false;
     }
   }
-  if (key == 's' || key == 'S'&&Pause==false) {
-    divs();
+  if (key == 's' || key == 'S' && Menu==false) {
+    Menu = true;
+  } else {
+    Menu=false;
+  }
+  if (key==CODED) {
+    if (keyCode == DOWN&&left==true) {
+      image(ImageLIV, NPX, NPY, step, step);
+      Crouch=false;
+      NPY=NPY-13;
+      NPH = step;
+    }
+  }
+  if (key==CODED) {
+    if (keyCode == DOWN&&right==true) {
+      image(ImageRIV, NPX, NPY, step, step);
+      Crouch=false;
+      NPY=NPY-13;
+      NPH = step;
+    }
   }
 }
 // Images based off of and inspired by Konami's Castlevania series

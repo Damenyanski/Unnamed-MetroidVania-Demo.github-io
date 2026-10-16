@@ -1,4 +1,4 @@
-int NumDiv = 13;
+int NumDiv = 10;
 int NumPar = 4;
 float divs[] = new float[NumDiv*NumPar];
 int Ref = 20;
@@ -30,7 +30,7 @@ float column3 = column2 + referentX *;
 
   for (int i=4; i<divs.length; i++) {
 
-    if (i%4==0&&int(i/4)==1) {
+    if (i%4 == 0 && int(i/4)==1) {
       divs[i] = row1;
     }
 
@@ -41,49 +41,95 @@ float column3 = column2 + referentX *;
     if (i%4 == 2 && int(i/4) == 1) {
       divs[i] = 5*Ref;
     }
+    if (i%4 == 3 && int(i/4) == 1) {
+      divs[i] = 6*Ref;
 
-    divs[4] = 4*Ref;
-    divs[5] = 4*Ref;
-    divs[6] = 5*Ref;
-    divs[7] = 6*Ref;
+      //
+    } else if (i%4 == 0 && int(i/4) == 1) {
+      divs[i] = 4*Ref;
+    } else if (i%4 == 1 && int(i/4) == 1) {
+      divs[i] = 8*Ref;
+    } else if (i%4 == 2 && int(i/4) == 1) {
+      divs[i] = 5*Ref;
+    } else if (i%4 == 3 && int(i/4) == 1) {
+      divs[i] = 1*Ref;
 
-    divs[8] = 4*Ref;
-    divs[9] = 8*Ref;
-    divs[10] = 5*Ref;
-    divs[11] = 1*Ref;
+      //
+    } else if (i%4 == 0 && int(i/4) == 1) {
+      divs[i] = 4*Ref;
+    } else if (i%4 == 1 && int(i/4) == 1) {
+      divs[i] = 9*Ref;
+    } else if (i%4 == 2 && int(i/4) == 1) {
+      divs[i] = 5*Ref;
+    } else if (i%4 == 3 && int(i/4) == 1) {
+      divs[i] = 1*Ref;
 
-    divs[12] = 4*Ref;
-    divs[13] = 9*Ref;
-    divs[14] = 5*Ref;
-    divs[15] = 1*Ref;
+      //
+    } else if (i%4 == 0 && int(i/4) == 1) {
+      divs[i] = 4*Ref;
+    } else if (i%4 == 1 && int(i/4) == 1) {
+      divs[i] = 10*Ref;
+    } else if (i%4 == 2 && int(i/4) == 1) {
+      divs[i] = 5*Ref;
+    } else if (i%4 == 3 && int(i/4) == 1) {
+      divs[i] = 1*Ref;
 
-    divs[16] = 4*Ref;
-    divs[17] = 10*Ref;
-    divs[18] = 5*Ref;
-    divs[19] = 1*Ref;
+      //
+    } else if (i%4 == 0 && int(i/4) == 1) {
+      divs[i] = 11*Ref;
+    } else if (i%4 == 1 && int(i/4) == 1) {
+      divs[i] = 5*Ref;
+    } else if (i%4 == 2 && int(i/4) == 1) {
+      divs[i] = 1*Ref;
+    } else if (i%4 == 3 && int(i/4) == 1) {
+      divs[i] = 6*Ref;
+    }
+    //
+    else if (i%4 == 0 && int(i/4) == 1) {
+      divs[i] = 11*Ref;
+    } else if (i%4 == 1 && int(i/4) == 1) {
+      divs[i] = 7*Ref;
+    } else if (i%4 == 2 && int(i/4) == 1) {
+      divs[i] = 1*Ref;
+    } else if (i%4 == 3 && int(i/4) == 1) {
+      divs[i] = 6*Ref;
 
-    divs[20] = 11*Ref;
-    divs[21] = 5*Ref;
-    divs[22] = 1*Ref;
-    divs[23] = 6*Ref;
+      //
+    } else if (i%4 == 0 && int(i/4) == 1) {
+      divs[i] = 11*Ref;
+    } else if (i%4 == 1 && int(i/4) == 1) {
+      divs[i] = 9*Ref;
+    } else if (i%4 == 2 && int(i/4) == 1) {
+      divs[i] = 1*Ref;
+    } else if (i%4 == 3 && int(i/4) == 1) {
+      divs[i] = 6*Ref;
 
-    divs[24] = 11*Ref;
-    divs[25] = 7*Ref;
-    divs[26] = 1*Ref;
-    divs[27] = 6*Ref;
+      //
+    } else if (i%4 == 0 && int(i/4) == 1) {
+      divs[i] = 11*Ref;
+    } else if (i%4 == 1 && int(i/4) == 1) {
+      divs[i] = 11*Ref;
+    } else if (i%4 == 2 && int(i/4) == 1) {
+      divs[i] = 1*Ref;
+    } else if (i%4 == 3 && int(i/4) == 1) {
+      divs[i] = 6*Ref;
 
-    divs[28] = 11*Ref;
-    divs[29] = 9*Ref;
-    divs[30] = 1*Ref;
-    divs[31] = 6*Ref;
-
-    divs[32] = 11*Ref;
-    divs[33] = 11*Ref;
-    divs[34] = 1*Ref;
-    divs[35] = 6*Ref;
-
-    divs[36] = 11*Ref;
-    divs[37] = 13*Ref;
-    divs[38] = 1*Ref;
-    divs[39] = 6*Ref;
+      //
+    } else if (i%4 == 0 && int(i/4) == 1) {
+      divs[i] = 11*Ref;
+    } else if (i%4 == 1 && int(i/4) == 1) {
+      divs[i] = 13*Ref;
+    } else if (i%4 == 2 && int(i/4) == 1) {
+      divs[i] = 1*Ref;
+    } else if (i%4 == 3 && int(i/4) == 1) {
+      divs[i] = 6*Ref;
+    }
   }
+  for ( int j=0; j<divs.length; j+=4 ) {
+    rectDIV(divs[j], divs[j+1], divs[j+2], divs[j+3]);
+  }//End DIVs FOR
+}
+
+void rectDIV(float X, float Y, float W, float H) {
+  rect(X, Y, W, H);
+}
