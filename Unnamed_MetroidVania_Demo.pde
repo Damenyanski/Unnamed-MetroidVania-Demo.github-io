@@ -16,12 +16,10 @@ int CPX;
 int CPY;
 int CPW;
 int CPH;
-int NPX;
-int NPY;
-int NPW;
-int NPH;
-int PH;
+int PX;
+int PY;
 int PW;
+int PH;
 
 int EHP;
 int EMP;
@@ -44,7 +42,7 @@ float Ground = 620;
 int StartFrame;
 int EndFrame;
 
-int step;
+int SizeReference;
 
 PImage ImageRI;
 PImage ImageRII;
@@ -79,7 +77,7 @@ boolean Menu = false;
 
 void setup() {
   fullScreen();
-  println(NPX, NPY);
+  println(PX, PY);
   println(displayWidth, displayHeight);
   AppWidth=displayWidth;
   AppHeight=displayHeight;
@@ -88,9 +86,9 @@ void setup() {
 
   PHP = 10;
   PMP = 5;
-  step = 150;
-  NPX=5;
-  NPY=620;
+  SizeReference = 150;
+  PX=5;
+  PY=620;
   right = true;
   left = false;
   Grav = false;
@@ -160,45 +158,45 @@ void setup() {
 }
 void draw () {
   background(BgroundI);
-  text("HP:" + str(PHP), 0, 0, step/2, step/2);
-  text("MP:" + str(PMP), 0, 10, step/2, step/2);
+  text("HP:" + str(PHP), 0, 0, SizeReference/2, SizeReference/2);
+  text("MP:" + str(PMP), 0, 10, SizeReference/2, SizeReference/2);
   if (right==false&&left==true&&Crouch==false&&Grav==false) {
-    image(ImageLI, NPX, NPY, step, step);
+    image(ImageLI, PX, PY, SizeReference, SizeReference);
     right=false;
     left=true;
   }
   if (right==true&&left==false&&Crouch==false&&Grav==false) {
-    image(ImageRI, NPX, NPY, step, step);
+    image(ImageRI, PX, PY, SizeReference, SizeReference);
     left=false;
     right = true;
   }
   if (right==false&&left==true&&Crouch==true&&Grav==false) {
-    image(ImageLIV, NPX, NPY, step, step);
+    image(ImageLIV, PX, PY, SizeReference, SizeReference);
     right=false;
     left=true;
   }
   if (right==true&&left==false&&Crouch==true&&Grav==false) {
-    image(ImageRIV, NPX, NPY, step, step);
+    image(ImageRIV, PX, PY, SizeReference, SizeReference);
     left=false;
     right = true;
   }
   if (right==false&&left==true&&Crouch==false&&Grav==true) {
-    image(ImageLIV, NPX, NPY, step, step);
+    image(ImageLIV, PX, PY, SizeReference, SizeReference);
     right=false;
     left=true;
   }
   if (right==true&&left==false&&Crouch==false&&Grav==true) {
-    image(ImageRIV, NPX, NPY, step, step);
+    image(ImageRIV, PX, PY, SizeReference, SizeReference);
     right=true;
     left=false;
   }
-  if (NPY<=Ground-3) {
-    NPY+=6;
-    if (NPY==Ground) {
-      NPY=620;
+  if (PY<=Ground-3) {
+    PY+=6;
+    if (PY==Ground) {
+      PY=620;
     }
   }
-  if (NPY<=620) {
+  if (PY<=620) {
     Grav=false;
   }
 
@@ -213,21 +211,21 @@ void keyPressed() {
   if (key==CODED) {
     if (keyCode == RIGHT) {
       Crouch=false;
-      NPX = CPX+10;
-      image(ImageRI, NPX, NPY, step, step);
-      CPX = NPX;
+      PX = CPX+10;
+      image(ImageRI, PX, PY, SizeReference, SizeReference);
+      CPX = PX;
       right = true;
       left = false;
     }
   }
   if (key==CODED) {
-    if (NPX<0-50) {
+    if (PX<0-50) {
     } else {
       if (keyCode == LEFT) {
         Crouch=false;
-        NPX = CPX-10;
-        image(ImageLI, NPX, NPY, step, step);
-        CPX = NPX;
+        PX = CPX-10;
+        image(ImageLI, PX, PY, SizeReference, SizeReference);
+        CPX = PX;
         left = true;
         right = false;
       }
@@ -235,45 +233,45 @@ void keyPressed() {
   }
   if (key==CODED) {
     if (keyCode == DOWN&&left==true) {
-      image(ImageLIV, NPX, NPY, step, step);
+      image(ImageLIV, PX, PY, SizeReference, SizeReference);
       Crouch=true;
-      NPY=NPY+13;
-      NPH = step/2;
+      PY=633;
+      PH = SizeReference/2;
     }
   }
   if (key==CODED) {
     if (keyCode == DOWN&&right==true) {
-      image(ImageRIV, NPX, NPY, step, step);
+      image(ImageRIV, PX, PY, SizeReference, SizeReference);
       Crouch=true;
-      NPY=NPY+13;
-      NPH = step/2;
+      PY=633;
+      PH = SizeReference/2;
     }
   }
 }
 void keyReleased() {
 
   if (key == 'z' || key == 'Z'&&left==true&&right==false) {
-    image(ImageLVII, NPX, NPY, step, step);
+    image(ImageLVII, PX, PY, SizeReference, SizeReference);
   }
   if (key == 'z' || key == 'Z'&&right==true&&left==false) {
-    image(ImageRVII, NPX, NPY, step, step);
+    image(ImageRVII, PX, PY, SizeReference, SizeReference);
   }
 
   if (keyCode == DOWN) {
-    image(ImageRI, NPX, NPY, step, step);
-    NPH = step;
+    image(ImageRI, PX, PY, SizeReference, SizeReference);
+    PH = SizeReference;
     Crouch=false;
   }
 
   if (key == 'x' || key == 'X'&&left==true) {
-    NPY-=120;
-    image(ImageLIV, NPX, NPY, step, step);
+    PY-=120;
+    image(ImageLIV, PX, PY, SizeReference, SizeReference);
     Grav=true;
   }
 
   if (key == 'x' || key == 'X'&&right==true) {
-    NPY-=120;
-    image(ImageRIV, NPX, NPY, step, step);
+    PY-=120;
+    image(ImageRIV, PX, PY, SizeReference, SizeReference);
     Grav=true;
   }
 
@@ -299,18 +297,18 @@ void keyReleased() {
   }
   if (key==CODED) {
     if (keyCode == DOWN&&left==true) {
-      image(ImageLIV, NPX, NPY, step, step);
+      image(ImageLIV, PX, PY, SizeReference, SizeReference);
       Crouch=false;
-      NPY=NPY-13;
-      NPH = step;
+      PY=620;
+      PH = SizeReference;
     }
   }
   if (key==CODED) {
     if (keyCode == DOWN&&right==true) {
-      image(ImageRIV, NPX, NPY, step, step);
+      image(ImageRIV, PX, PY, SizeReference, SizeReference);
       Crouch=false;
-      NPY=NPY-13;
-      NPH = step;
+      PY=620;
+      PH = SizeReference;
     }
   }
 }
