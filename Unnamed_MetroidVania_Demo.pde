@@ -12,14 +12,19 @@ int AppHeight;
 
 float PHP;
 float PMP;
-int CPX;
-int CPY;
-int CPW;
-int CPH;
+int OriginPX;
+int OriginPY;
+int OriginPW;
+int OriginPH;
+int CrouchPY;
+int CrouchPW;
+int CrouchPH;
 int PX;
 int PY;
 int PW;
 int PH;
+int MAXPX;
+int MAXPY;
 
 int EHP;
 int EMP;
@@ -37,7 +42,7 @@ int EW;
 float RX;
 float RY;
 
-float Ground = 620;
+int Ground = 620;
 
 int StartFrame;
 int EndFrame;
@@ -160,6 +165,13 @@ void draw () {
   background(BgroundI);
   text("HP:" + str(PHP), 0, 0, SizeReference/2, SizeReference/2);
   text("MP:" + str(PMP), 0, 10, SizeReference/2, SizeReference/2);
+  MAXPY = OriginPY-30;
+  if (right==true&&left==false&&Grav==true) {
+    image(ImageRIV, PX, PY, SizeReference, SizeReference);
+  }
+  if (left==true&&right==false&&Grav==true) {
+    image(ImageLIV, PX, PY, SizeReference, SizeReference);
+  }
   if (right==false&&left==true&&Crouch==false&&Grav==false) {
     image(ImageLI, PX, PY, SizeReference, SizeReference);
     right=false;
@@ -192,9 +204,6 @@ void draw () {
   }
   if (PY<=Ground-3) {
     PY+=6;
-    if (PY==Ground) {
-      PY=620;
-    }
   }
   if (PY<=620) {
     Grav=false;
@@ -204,16 +213,14 @@ void draw () {
     divs();
   }
 }
-
-
 void keyPressed() {
 
   if (key==CODED) {
     if (keyCode == RIGHT) {
       Crouch=false;
-      PX = CPX+10;
+      PX = OriginPX+10;
       image(ImageRI, PX, PY, SizeReference, SizeReference);
-      CPX = PX;
+      OriginPX = PX;
       right = true;
       left = false;
     }
@@ -223,9 +230,9 @@ void keyPressed() {
     } else {
       if (keyCode == LEFT) {
         Crouch=false;
-        PX = CPX-10;
+        PX = OriginPX-10;
         image(ImageLI, PX, PY, SizeReference, SizeReference);
-        CPX = PX;
+        OriginPX = PX;
         left = true;
         right = false;
       }
@@ -263,16 +270,25 @@ void keyReleased() {
     Crouch=false;
   }
 
-  if (key == 'x' || key == 'X'&&left==true) {
-    PY-=120;
-    image(ImageLIV, PX, PY, SizeReference, SizeReference);
-    Grav=true;
-  }
+  if (key == 'x' || key == 'X'&&left==true&&TouchGround==true) {
 
-  if (key == 'x' || key == 'X'&&right==true) {
-    PY-=120;
-    image(ImageRIV, PX, PY, SizeReference, SizeReference);
-    Grav=true;
+    OriginPY=PY;
+    if ( PY==MAXPY) {
+      PY+=80;
+      image(ImageLIV, PX, PY, SizeReference, SizeReference);
+    } else {
+      PY-=80;
+    }
+  }
+  if (key == 'x' || key == 'X'&&right==true&&TouchGround==true) {
+
+    OriginPY=PY;
+    if ( PY==MAXPY) {
+      PY+=80;
+      image(ImageRIV, PX, PY, SizeReference, SizeReference);
+    } else {
+      PY-=80;
+    }
   }
 
   if (key==CODED) {
