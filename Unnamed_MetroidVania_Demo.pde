@@ -70,15 +70,15 @@ PImage BackgroundII;
 
 boolean left;
 boolean right;
-
 boolean Pause;
-
 boolean Grav;
 boolean TouchGround;
-
 boolean Crouch;
-
 boolean Menu = false;
+boolean Stand;
+boolean Attack;
+boolean Walk;
+boolean SubWeapon;
 
 void setup() {
   fullScreen();
@@ -266,7 +266,12 @@ void keyPressed() {
   }
 }
 void keyReleased() {
-
+  if (key == 'a'||key=='A'&&left==true) {
+    PX=PX+40;
+  }
+  if (key == 'a'||key=='A'&&right==true) {
+    PX=PX-40;
+  }
   if (key == 'z' || key == 'Z'&&left==true&&right==false) {
     image(ImageLVII, PX, PY, SizeReference, SizeReference);
   }
