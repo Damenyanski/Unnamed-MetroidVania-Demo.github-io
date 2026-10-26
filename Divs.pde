@@ -127,7 +127,7 @@ float column3 = column2 + referentX *;
   }
   for ( int j=0; j<divs.length; j+=4 ) {
     rectDIV(divs[j], divs[j+1], divs[j+2], divs[j+3]);
-  }//End DIVs FOR
+  }
 }
 
 void rectDIV(float X, float Y, float W, float H) {

@@ -213,12 +213,17 @@ void draw () {
     divs();
   }
 }
+
 void keyPressed() {
 
   if (key==CODED) {
     if (keyCode == RIGHT) {
+      if (PX<=0)
+      {
+        PX=1279;
+      }
       Crouch=false;
-      PX = OriginPX+10;
+      PX = constrain(OriginPX+10, 0, 1220+SizeReference);
       image(ImageRI, PX, PY, SizeReference, SizeReference);
       OriginPX = PX;
       right = true;
@@ -229,8 +234,13 @@ void keyPressed() {
     if (PX<0-50) {
     } else {
       if (keyCode == LEFT) {
+
+        if (PX>=1280)
+        {
+          PX=1;
+        }
         Crouch=false;
-        PX = OriginPX-10;
+        PX = constrain(OriginPX-10, -150, 1220+SizeReference);
         image(ImageLI, PX, PY, SizeReference, SizeReference);
         OriginPX = PX;
         left = true;
